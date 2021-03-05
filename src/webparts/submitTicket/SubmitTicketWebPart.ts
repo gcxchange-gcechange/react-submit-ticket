@@ -22,7 +22,8 @@ export default class SubmitTicketWebPart extends BaseClientSideWebPart<ISubmitTi
       SubmitTicket,
       {
         description: this.properties.description,
-        currentUser: this.context.pageContext.user
+        currentUser: this.context.pageContext.user,
+        context: this.context,
       }
     );
 
