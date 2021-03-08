@@ -7,19 +7,21 @@ import {
   IDropdownOption
 } from 'office-ui-fabric-react';
 import styles from './SubmitTicket.module.scss';
+import * as strings from 'SubmitTicketWebPartStrings';
 import { ISubmitTicketProps } from './ISubmitTicketProps';
 import { ISubmitTicketState } from './ISubmitTicketState';
 import { escape } from '@microsoft/sp-lodash-subset';
 
 // Example placeholder options
 const options: IDropdownOption[] = [
-  { key: 'issue', text: 'I am experiencing an issue on gcxchange' },
-  { key: 'assistance', text: 'I need assistance using gcxchange' },
-  { key: 'data', text: 'I would like to request statistics on my page' },
-  { key: 'other', text: 'Other' },
+  { key: 'issue', text: strings.ReasonIssue },
+  { key: 'assistance', text: strings.ReasonAssistance },
+  { key: 'data', text: strings.ReasonData },
+  { key: 'other', text: strings.ReasonOther },
 ];
 
-// Example placeholder options
+// Placeholder options
+// Keys and text can change
 const issuesOptions: IDropdownOption[] =[
   { key: 'reason1', text: 'Issues Reason 1 Placeholder'},
   { key: 'reason2', text: 'Issues Reason 2 Placeholder'},
@@ -66,7 +68,6 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
       headers: reqHeaders,
       body: reqBody
     };
-    /*
     this.props.context.aadHttpClientFactory
       // Add Client
       .getClient('')
@@ -79,7 +80,6 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
             return response.json();
           })
       });
-      */
   }
 
   public render(): React.ReactElement<ISubmitTicketProps> {
@@ -100,11 +100,11 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                 }}
               >
                 <TextField
-                  label="Email"
+                  label={strings.EmailLabel}
                   value={this.props.currentUser.email}
                 />
                 <Dropdown
-                  label="REASON 1 FOR TICKET"
+                  label={strings.ReasonOneLabel}
                   options={options}
                   onChange={(e, o) => {
                     console.log(e.target);
@@ -158,7 +158,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                 {
                   (this.state.reasonOneVal === 'other') &&
                   <TextField
-                    label="Description"
+                    label={strings.DescriptionLabel}
                     multiline
                     rows={3}
                     onChange={(e, o) => {
@@ -172,7 +172,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                 {
                   (this.state.reasonTwoVal) &&
                   <TextField
-                    label="Description"
+                    label={strings.DescriptionLabel}
                     multiline
                     rows={3}
                     onChange={(e, o) => {
@@ -183,7 +183,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                     }}
                   />
                 }
-                <input type="submit" value="Submit" />
+                <input type="submit" value={strings.SubmitLabel} />
               </form>
             </div>
           </div>
