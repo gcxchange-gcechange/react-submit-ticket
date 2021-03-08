@@ -4,7 +4,9 @@ import {
   TextField,
   Dropdown,
   DropdownMenuItemType,
-  IDropdownOption
+  IDropdownOption,
+  DatePicker,
+  Stack
 } from 'office-ui-fabric-react';
 import styles from './SubmitTicket.module.scss';
 import * as strings from 'SubmitTicketWebPartStrings';
@@ -20,26 +22,6 @@ const options: IDropdownOption[] = [
   { key: 'other', text: strings.ReasonOther },
 ];
 
-// Placeholder options
-// Keys and text can change
-const issuesOptions: IDropdownOption[] =[
-  { key: 'reason1', text: 'Issues Reason 1 Placeholder'},
-  { key: 'reason2', text: 'Issues Reason 2 Placeholder'},
-  { key: 'reason3', text: 'Issues Reason 3 Placeholder'},
-];
-
-const assistanceOptions: IDropdownOption[] =[
-  { key: 'reason1', text: 'Assistance Reason 1 Placeholder'},
-  { key: 'reason2', text: 'Assistance Reason 2 Placeholder'},
-  { key: 'reason3', text: 'Assistance Reason 3 Placeholder'},
-];
-
-const dataOptions: IDropdownOption[] =[
-  { key: 'reason1', text: 'Data Reason 1 Placeholder'},
-  { key: 'reason2', text: 'Data Reason 2 Placeholder'},
-  { key: 'reason3', text: 'Data Reason 3 Placeholder'},
-];
-
 export default class SubmitTicket extends React.Component<ISubmitTicketProps, ISubmitTicketState> {
 
   constructor(props: ISubmitTicketProps, state: ISubmitTicketState) {  
@@ -49,7 +31,8 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
     this.state = {  
       reasonOneVal: '',
       reasonTwoVal: '',
-      ticketDescription: ''
+      ticketDescription: '',
+      pageURL: '',
     };  
   }
 
@@ -61,7 +44,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
       'userName': this.props.currentUser.displayName,
       'userEmail': this.props.currentUser.email,
       'options': this.state.reasonOneVal,
-      'userText': this.state.ticketDescription
+      'userText': `Page URL: ${this.state.pageURL} Description: ${this.state.ticketDescription}`,
     });
     console.log(reqBody);
     const options: IHttpClientOptions = {
@@ -89,9 +72,6 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
           <div className={ styles.row }>
             <div className={ styles.column }>
               <p className={ styles.description }>{escape(this.props.description)}</p>
-              Current Logged in User Info:
-              <p>{escape(this.props.currentUser.displayName)}</p>
-              <p>{escape(this.props.currentUser.email)}</p>
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -102,10 +82,12 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                 <TextField
                   label={strings.EmailLabel}
                   value={this.props.currentUser.email}
+                  required
                 />
                 <Dropdown
                   label={strings.ReasonOneLabel}
                   options={options}
+                  required
                   onChange={(e, o) => {
                     console.log(e.target);
                     console.log(o.key);
@@ -118,70 +100,118 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                 />
                 {
                   (this.state.reasonOneVal === 'issue') &&
-                  <Dropdown
-                    label="Reasons for issues"
-                    options={issuesOptions}
-                    onChange={(e, o) => {
-                      this.setState({
-                        reasonTwoVal: o.key
-                      })
-                      console.log(o.key);
-                    }}
-                  />
+                  <div>
+                    <TextField
+                      label={ strings.PageLabel }
+                      onChange={(e, o) => {
+                        console.log(o);
+                        this.setState({
+                          pageURL: o,
+                        })
+                      }}
+                    />
+                    <TextField
+                      label={strings.DescriptionLabel}
+                      multiline
+                      rows={3}
+                      required
+                      onChange={(e, o) => {
+                        console.log(o);
+                        this.setState({
+                          ticketDescription: o,
+                        })
+                      }}
+                    />
+                  </div>
                 }
                 {
                   (this.state.reasonOneVal === 'assistance') &&
-                  <Dropdown
-                    label="reasons for assistance"
-                    options={assistanceOptions}
-                    onChange={(e, o) => {
-                      this.setState({
-                        reasonTwoVal: o.key
-                      })
-                      console.log(o.key);
-                    }}
-                  />
+                  <div>
+                    <TextField
+                      label={ strings.PageLabel }
+                      onChange={(e, o) => {
+                        console.log(o);
+                        this.setState({
+                          pageURL: o,
+                        })
+                      }}
+                    />
+                    <TextField
+                      label={strings.DescriptionLabel}
+                      multiline
+                      rows={3}
+                      required
+                      onChange={(e, o) => {
+                        console.log(o);
+                        this.setState({
+                          ticketDescription: o,
+                        })
+                      }}
+                    />
+                  </div>
                 }
                 {
                   (this.state.reasonOneVal === 'data') &&
-                  <Dropdown
-                    label="reasons for data"
-                    options={dataOptions}
-                    onChange={(e, o) => {
-                      this.setState({
-                        reasonTwoVal: o.key
-                      })
-                      console.log(o.key);
-                    }}
-                  />
+                  <div>
+                    <TextField
+                      label={ strings.PageLabel }
+                      onChange={(e, o) => {
+                        console.log(o);
+                        this.setState({
+                          pageURL: o,
+                        })
+                      }}
+                    />
+                    <Stack horizontal>
+                      <DatePicker 
+                        label="Start Date"
+                      />
+                      <DatePicker 
+                        label="End Date"
+                      />
+                    </Stack>
+                    <TextField
+                      label="Email report to"
+                    />
+                    <TextField
+                      label={strings.DescriptionLabel}
+                      multiline
+                      rows={3}
+                      required
+                      onChange={(e, o) => {
+                        console.log(o);
+                        this.setState({
+                          ticketDescription: o,
+                        })
+                      }}
+                    />
+                  </div>
                 }
                 {
                   (this.state.reasonOneVal === 'other') &&
-                  <TextField
-                    label={strings.DescriptionLabel}
-                    multiline
-                    rows={3}
-                    onChange={(e, o) => {
-                      console.log(o);
-                      this.setState({
-                        ticketDescription: o,
-                      })
-                    }}
-                  />
-                }
-                {
-                  (this.state.reasonTwoVal) &&
-                  <TextField
-                    label={strings.DescriptionLabel}
-                    multiline
-                    rows={3}
-                    onChange={(e, o) => {
-                      console.log(o);
-                      this.setState({
-                        ticketDescription: o,
-                      })
-                    }}
-                  />
+                  <div>
+                    <TextField
+                      label={ strings.PageLabel }
+                      onChange={(e, o) => {
+                        console.log(o);
+                        this.setState({
+                          pageURL: o,
+                        })
+                      }}
+                    />
+                    <TextField
+                      label={strings.DescriptionLabel}
+                      multiline
+                      rows={3}
+                      required
+                      onChange={(e, o) => {
+                        console.log(o);
+                        this.setState({
+                          ticketDescription: o,
+                        })
+                      }}
+                    />
+                  </div>
                 }
                 <input type="submit" value={strings.SubmitLabel} />
               </form>

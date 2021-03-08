@@ -6,6 +6,7 @@ declare interface ISubmitTicketWebPartStrings {
   ReasonOneLabel: string;
   ReasonTwoLabel: string;
   DescriptionLabel: string;
+  PageLabel: string;
   SubmitLabel: string;
   ReasonIssue: string;
   ReasonAssistance: string;

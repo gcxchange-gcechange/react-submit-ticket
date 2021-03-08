@@ -7,6 +7,7 @@ define([], function() {
     "ReasonOneLabel": "What is your primary reason for submitting a ticket?",
     "ReasonTwoLabel": "Reason 2 Label",
     "DescriptionLabel": "Description",
+    "PageLabel": "Page URL",
     "SubmitLabel": "Submit",
     "ReasonIssue": "I am experiencing an issue on gcxchange",
     "ReasonAssistance": "I need assistance using gxchange",
