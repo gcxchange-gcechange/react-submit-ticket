@@ -32,19 +32,28 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
       reasonOneVal: '',
       reasonTwoVal: '',
       ticketDescription: '',
+      startDate: '',
+      endDate: '',
       pageURL: '',
+      emailTo: '',
+      attachImage: null,
     };  
   }
 
   private sendTicket(): void {
-    console.log('sending the ticket!');
+    let formatText;
+    if(this.state.reasonOneVal === 'data') {
+      formatText = `Page URL: ${this.state.pageURL} Start Date: ${this.state.startDate} End Date: ${this.state.endDate} Description: ${this.state.ticketDescription} Email To: ${this.state.emailTo}`
+    } else {
+      formatText = `Page URL: ${this.state.pageURL} Description: ${this.state.ticketDescription}`
+    }
     const reqHeaders: Headers = new Headers();
     reqHeaders.append('Content-type', 'application/json');
     const reqBody: string = JSON.stringify({
       'userName': this.props.currentUser.displayName,
       'userEmail': this.props.currentUser.email,
       'options': this.state.reasonOneVal,
-      'userText': `Page URL: ${this.state.pageURL} Description: ${this.state.ticketDescription}`,
+      'userText': formatText,
     });
     console.log(reqBody);
     const options: IHttpClientOptions = {
@@ -75,7 +84,6 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
-                  console.log('A Submit function will go here');
                   this.sendTicket();
                 }}
               >
@@ -89,8 +97,6 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                   options={options}
                   required
                   onChange={(e, o) => {
-                    console.log(e.target);
-                    console.log(o.key);
                     this.setState({
                       reasonOneVal: o.key,
                       reasonTwoVal: '',
@@ -104,7 +110,6 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                     <TextField
                       label={ strings.PageLabel }
                       onChange={(e, o) => {
-                        console.log(o);
                         this.setState({
                           pageURL: o,
                         })
@@ -116,12 +121,25 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                       rows={3}
                       required
                       onChange={(e, o) => {
-                        console.log(o);
                         this.setState({
                           ticketDescription: o,
                         })
                       }}
                     />
+                    <div>
+                      <label htmlFor="issueFile">
+                        { strings.AttachLabel }
+                      </label>
+                      <input
+                        type="file"
+                        id="issueFile"
+                        onChange={({ target }) => {
+                          this.setState({
+                            attachImage: target.files[0],
+                          });
+                        }}
+                      />   
+                    </div>
                   </div>
                 }
                 {
@@ -130,7 +148,6 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                     <TextField
                       label={ strings.PageLabel }
                       onChange={(e, o) => {
-                        console.log(o);
                         this.setState({
                           pageURL: o,
                         })
@@ -142,12 +159,25 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                       rows={3}
                       required
                       onChange={(e, o) => {
-                        console.log(o);
                         this.setState({
                           ticketDescription: o,
                         })
                       }}
                     />
+                    <div>
+                      <label htmlFor="assistFile">
+                        { strings.AttachLabel }
+                      </label>
+                      <input
+                        type="file"
+                        id="assistFile"
+                        onChange={({ target }) => {
+                          this.setState({
+                            attachImage: target.files[0],
+                          });
+                        }}
+                      />   
+                    </div>
                   </div>
                 }
                 {
@@ -156,7 +186,6 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                     <TextField
                       label={ strings.PageLabel }
                       onChange={(e, o) => {
-                        console.log(o);
                         this.setState({
                           pageURL: o,
                         })
@@ -164,14 +193,29 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                     />
                     <Stack horizontal>
                       <DatePicker 
-                        label="Start Date"
+                        label={ strings.StartDateLabel }
+                        onSelectDate={(d) => {
+                          this.setState({
+                            startDate: d
+                          });
+                        }}
                       />
                       <DatePicker 
-                        label="End Date"
+                        label={ strings.EndDateLabel }
+                        onSelectDate={(d) => {
+                          this.setState({
+                            endDate: d
+                          });
+                        }}
                       />
                     </Stack>
                     <TextField
-                      label="Email report to"
+                      label={ strings.EmailToLabel }
+                      onChange={(e, o) => {
+                        this.setState({
+                          emailTo: o,
+                        })
+                      }}
                     />
                     <TextField
                       label={strings.DescriptionLabel}
@@ -179,7 +223,6 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                       rows={3}
                       required
                       onChange={(e, o) => {
-                        console.log(o);
                         this.setState({
                           ticketDescription: o,
                         })
@@ -193,7 +236,6 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                     <TextField
                       label={ strings.PageLabel }
                       onChange={(e, o) => {
-                        console.log(o);
                         this.setState({
                           pageURL: o,
                         })
@@ -205,12 +247,25 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                       rows={3}
                       required
                       onChange={(e, o) => {
-                        console.log(o);
                         this.setState({
                           ticketDescription: o,
                         })
                       }}
                     />
+                    <div>
+                      <label htmlFor="otherFile">
+                        { strings.AttachLabel }
+                      </label>
+                      <input
+                        type="file"
+                        id="otherFile"
+                        onChange={({ target }) => {
+                          this.setState({
+                            attachImage: target.files[0],
+                          });
+                        }}
+                      />   
+                    </div>
                   </div>
                 }
                 <input type="submit" value={strings.SubmitLabel} />
