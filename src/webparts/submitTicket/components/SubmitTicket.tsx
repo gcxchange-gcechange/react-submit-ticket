@@ -41,21 +41,19 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
   }
 
   private sendTicket(): void {
-    let formatText;
-    if(this.state.reasonOneVal === 'data') {
-      formatText = `Page URL: ${this.state.pageURL} Start Date: ${this.state.startDate} End Date: ${this.state.endDate} Description: ${this.state.ticketDescription} Email To: ${this.state.emailTo}`
-    } else {
-      formatText = `Page URL: ${this.state.pageURL} Description: ${this.state.ticketDescription}`
-    }
     const reqHeaders: Headers = new Headers();
-    reqHeaders.append('Content-type', 'application/json');
-    const reqBody: string = JSON.stringify({
-      'userName': this.props.currentUser.displayName,
-      'userEmail': this.props.currentUser.email,
-      'options': this.state.reasonOneVal,
-      'userText': formatText,
-    });
-    console.log(reqBody);
+    // reqHeaders.append('Content-type', 'application/json');
+    reqHeaders.append('Content-Type', 'multipart/form-data');
+    var reqBody = new FormData();
+    reqBody.append('email', this.props.currentUser.email);
+    reqBody.append('reasonOneVal', this.state.reasonOneVal.text);
+    reqBody.append('reasonTwoVal', '');
+    reqBody.append('ticketDescription', this.state.ticketDescription);
+    reqBody.append('pageURL', this.state.pageURL);
+    reqBody.append('startDate', this.state.startDate);
+    reqBody.append('endDate', this.state.endDate);
+    reqBody.append('emailTo', this.state.emailTo);
+    reqBody.append('attachments', this.state.attachImage);
     const options: IHttpClientOptions = {
       headers: reqHeaders,
       body: reqBody
@@ -98,14 +96,14 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                   required
                   onChange={(e, o) => {
                     this.setState({
-                      reasonOneVal: o.key,
+                      reasonOneVal: o,
                       reasonTwoVal: '',
                       ticketDescription: ''
-                    })
+                    });
                   }}
                 />
                 {
-                  (this.state.reasonOneVal === 'issue') &&
+                  (this.state.reasonOneVal.key === 'issue') &&
                   <div>
                     <TextField
                       label={ strings.PageLabel }
@@ -143,7 +141,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                   </div>
                 }
                 {
-                  (this.state.reasonOneVal === 'assistance') &&
+                  (this.state.reasonOneVal.key === 'assistance') &&
                   <div>
                     <TextField
                       label={ strings.PageLabel }
@@ -181,7 +179,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                   </div>
                 }
                 {
-                  (this.state.reasonOneVal === 'data') &&
+                  (this.state.reasonOneVal.key === 'data') &&
                   <div>
                     <TextField
                       label={ strings.PageLabel }
@@ -231,7 +229,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                   </div>
                 }
                 {
-                  (this.state.reasonOneVal === 'other') &&
+                  (this.state.reasonOneVal.key === 'other') &&
                   <div>
                     <TextField
                       label={ strings.PageLabel }
