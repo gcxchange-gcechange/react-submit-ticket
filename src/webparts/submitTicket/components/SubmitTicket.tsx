@@ -53,7 +53,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
     reqBody.append('startDate', this.state.startDate);
     reqBody.append('endDate', this.state.endDate);
     reqBody.append('emailTo', this.state.emailTo);
-    reqBody.append('attachments', this.state.attachImage);
+    reqBody.append('attachment', this.state.attachImage);
     const options: IHttpClientOptions = {
       headers: reqHeaders,
       body: reqBody
@@ -67,6 +67,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
           .post('', AadHttpClient.configurations.v1, options)
           .then((response: HttpClientResponse) => {
             console.log(response);
+            console.log('TODO SEND FEEDBACK TO USER!');
             return response.json();
           })
       });
