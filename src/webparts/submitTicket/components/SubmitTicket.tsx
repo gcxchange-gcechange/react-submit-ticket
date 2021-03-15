@@ -22,6 +22,12 @@ const options: IDropdownOption[] = [
   { key: 'other', text: strings.ReasonOther },
 ];
 
+const dateRange: IDropdownOption[] = [
+  { key: '7', text: '7 days' },
+  { key: '30', text: '30 days' },
+  { key: '90', text: '90 days' },
+];
+
 export default class SubmitTicket extends React.Component<ISubmitTicketProps, ISubmitTicketState> {
 
   constructor(props: ISubmitTicketProps, state: ISubmitTicketState) {  
@@ -125,7 +131,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                         })
                       }}
                     />
-                    <div>
+                    <div className={styles.fileHolder}>
                       <label htmlFor="issueFile">
                         { strings.AttachLabel }
                       </label>
@@ -163,7 +169,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                         })
                       }}
                     />
-                    <div>
+                    <div className={styles.fileHolder}>
                       <label htmlFor="assistFile">
                         { strings.AttachLabel }
                       </label>
@@ -190,24 +196,26 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                         })
                       }}
                     />
-                    <Stack horizontal>
-                      <DatePicker 
-                        label={ strings.StartDateLabel }
-                        onSelectDate={(d) => {
-                          this.setState({
-                            startDate: d
-                          });
-                        }}
-                      />
-                      <DatePicker 
-                        label={ strings.EndDateLabel }
-                        onSelectDate={(d) => {
-                          this.setState({
-                            endDate: d
-                          });
-                        }}
-                      />
-                    </Stack>
+                    <Dropdown
+                      label="Date Range / From the last"
+                      options={dateRange}
+                      required
+                      onChange={(e, o) => {
+                        let today = new Date();
+                        let startDate = new Date();
+                        if (o.key === '7') {
+                          startDate.setDate(startDate.getDate()-7);
+                        } else if (o.key === '30') {
+                          startDate.setDate(startDate.getDate()-30);
+                        } else if ( o.key === '90') {
+                          startDate.setDate(startDate.getDate()-90);
+                        }
+                        this.setState({
+                          startDate: startDate,
+                          endDate: today
+                        });
+                      }}
+                    />
                     <TextField
                       label={ strings.EmailToLabel }
                       onChange={(e, o) => {
@@ -251,7 +259,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                         })
                       }}
                     />
-                    <div>
+                    <div className={styles.fileHolder}>
                       <label htmlFor="otherFile">
                         { strings.AttachLabel }
                       </label>
@@ -267,7 +275,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                     </div>
                   </div>
                 }
-                <input type="submit" value={strings.SubmitLabel} />
+                <input disabled={(this.state.ticketDescription) ? false : true} className={ styles.button } type="submit" value={strings.SubmitLabel} />
               </form>
             </div>
           </div>

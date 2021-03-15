@@ -37,6 +37,14 @@
     @include ms-fontColor-black;
   }
 
+  .fileHolder {
+    margin: 8px 0;
+    label {
+      margin-bottom: 4px;
+      display: block;
+    }
+  }
+
   .button {
     // Our button
     text-decoration: none;
@@ -44,9 +52,10 @@
 
     // Primary Button
     min-width: 80px;
-    background-color: $ms-color-themePrimary;
-    border-color: $ms-color-themePrimary;
+    background-color: #0a5bfc;
+    border-color: #0a5bfc;
     color: $ms-color-white;
+    margin-top: 15px;
 
     // Basic Button
     outline: transparent;
@@ -61,6 +70,10 @@
     display: inline-block;
     padding: 0 16px;
 
+    :disabled {
+      cursor: block;
+      color: red;
+    }
     .label {
       font-weight: $ms-font-weight-semibold;
       font-size: $ms-font-size-m;
@@ -70,5 +83,11 @@
       vertical-align: top;
       display: inline-block;
     }
+  }
+  .button:disabled {
+    cursor: not-allowed;
+    color: black;
+    background-color:rgba(239, 239, 239, 0.3);
+    border-color: rgba(239, 239, 239, 0.3);
   }
 }
