@@ -16,10 +16,10 @@ import { escape } from '@microsoft/sp-lodash-subset';
 
 // Example placeholder options
 const options: IDropdownOption[] = [
-  { key: 'issue', text: strings.ReasonIssue },
-  { key: 'assistance', text: strings.ReasonAssistance },
-  { key: 'data', text: strings.ReasonData },
-  { key: 'other', text: strings.ReasonOther },
+  { key: 'I am experiencing an issue on gcxchange | Je rencontre un problème sur gcéchange', text: strings.ReasonIssue },
+  { key: "I need assistance using gcxchange | J'ai besoin d'aide avec gcéchange", text: strings.ReasonAssistance },
+  { key: "I would like to request statistics on my page | Je souhaite obtenir les statistiques de ma page", text: strings.ReasonData },
+  { key: "Other (please specify) | Autre (veuillez préciser)", text: strings.ReasonOther },
 ];
 
 const dateRange: IDropdownOption[] = [
@@ -52,7 +52,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
     reqHeaders.append('Content-Type', 'multipart/form-data');
     var reqBody = new FormData();
     reqBody.append('email', this.props.currentUser.email);
-    reqBody.append('reasonOneVal', this.state.reasonOneVal.text);
+    reqBody.append('reasonOneVal', this.state.reasonOneVal.key);
     reqBody.append('reasonTwoVal', '');
     reqBody.append('ticketDescription', this.state.ticketDescription);
     reqBody.append('pageURL', this.state.pageURL);
@@ -110,7 +110,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                   }}
                 />
                 {
-                  (this.state.reasonOneVal.key === 'issue') &&
+                  (this.state.reasonOneVal.key === 'I am experiencing an issue on gcxchange | Je rencontre un problème sur gcéchange') &&
                   <div>
                     <TextField
                       label={ strings.PageLabel }
@@ -148,7 +148,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                   </div>
                 }
                 {
-                  (this.state.reasonOneVal.key === 'assistance') &&
+                  (this.state.reasonOneVal.key === "I need assistance using gcxchange | J'ai besoin d'aide avec gcéchange") &&
                   <div>
                     <TextField
                       label={ strings.PageLabel }
@@ -186,7 +186,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                   </div>
                 }
                 {
-                  (this.state.reasonOneVal.key === 'data') &&
+                  (this.state.reasonOneVal.key === "I would like to request statistics on my page | Je souhaite obtenir les statistiques de ma page") &&
                   <div>
                     <TextField
                       label={ strings.PageLabel }
@@ -197,7 +197,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                       }}
                     />
                     <Dropdown
-                      label="Date Range / From the last"
+                      label={ strings.DateLabel }
                       options={dateRange}
                       required
                       onChange={(e, o) => {
@@ -238,7 +238,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                   </div>
                 }
                 {
-                  (this.state.reasonOneVal.key === 'other') &&
+                  (this.state.reasonOneVal.key === "Other (please specify) | Autre (veuillez préciser)") &&
                   <div>
                     <TextField
                       label={ strings.PageLabel }

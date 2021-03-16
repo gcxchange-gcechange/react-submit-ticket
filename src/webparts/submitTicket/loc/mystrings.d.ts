@@ -8,8 +8,7 @@ declare interface ISubmitTicketWebPartStrings {
   DescriptionLabel: string;
   PageLabel: string;
   AttachLabel: string;
-  StartDateLabel: string;
-  EndDateLabel: string;
+  DateLabel: string;
   EmailToLabel: string;
   SubmitLabel: string;
   ReasonIssue: string;
