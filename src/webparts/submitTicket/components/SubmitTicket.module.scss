@@ -37,6 +37,16 @@
     @include ms-fontColor-black;
   }
 
+  .inputHolder {
+    margin-bottom:5px;
+  }
+
+  .inputHolder {
+    .ms-TextField-fieldGroup:focus {
+      border-color: red !important;
+    }
+  }
+
   .fileHolder {
     margin: 8px 0;
     label {

@@ -5,8 +5,8 @@ import {
   Dropdown,
   DropdownMenuItemType,
   IDropdownOption,
-  DatePicker,
-  Stack
+  MessageBar,
+  MessageBarType
 } from 'office-ui-fabric-react';
 import styles from './SubmitTicket.module.scss';
 import * as strings from 'SubmitTicketWebPartStrings';
@@ -43,6 +43,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
       pageURL: '',
       emailTo: '',
       attachImage: null,
+      displayMessage: false
     };  
   }
 
@@ -73,7 +74,18 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
           .post('', AadHttpClient.configurations.v1, options)
           .then((response: HttpClientResponse) => {
             console.log(response);
-            console.log('TODO SEND FEEDBACK TO USER!');
+            if (response.status === 200) {
+              this.setState({
+                displayMessage: true,
+                reasonOneVal: '',
+                ticketDescription: '',
+                startDate: '',
+                endDate: '',
+                pageURL: '',
+                emailTo: '',
+                attachImage: null,
+              });
+            }
             return response.json();
           })
       });
@@ -84,6 +96,13 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
       <div className={ styles.submitTicket }>
         <div className={ styles.container }>
           <div className={ styles.row }>
+            {this.state.displayMessage &&
+              <MessageBar
+                messageBarType={MessageBarType.success}
+              >
+                Your Ticket was sent to the help desk!
+              </MessageBar>
+            }
             <div className={ styles.column }>
               <p className={ styles.description }>{escape(this.props.description)}</p>
               <form
@@ -95,17 +114,20 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                 <TextField
                   label={strings.EmailLabel}
                   value={this.props.currentUser.email}
+                  className={ styles.inputHolder }
                   required
                 />
                 <Dropdown
                   label={strings.ReasonOneLabel}
                   options={options}
                   required
+                  className={ styles.inputHolder }
                   onChange={(e, o) => {
                     this.setState({
                       reasonOneVal: o,
                       reasonTwoVal: '',
-                      ticketDescription: ''
+                      ticketDescription: '',
+                      displayMessage: false
                     });
                   }}
                 />
@@ -114,6 +136,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                   <div>
                     <TextField
                       label={ strings.PageLabel }
+                      className={ styles.inputHolder }
                       onChange={(e, o) => {
                         this.setState({
                           pageURL: o,
@@ -125,6 +148,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                       multiline
                       rows={3}
                       required
+                      className={ styles.inputHolder }
                       onChange={(e, o) => {
                         this.setState({
                           ticketDescription: o,
@@ -152,6 +176,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                   <div>
                     <TextField
                       label={ strings.PageLabel }
+                      className={ styles.inputHolder }
                       onChange={(e, o) => {
                         this.setState({
                           pageURL: o,
@@ -163,6 +188,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                       multiline
                       rows={3}
                       required
+                      className={ styles.inputHolder }
                       onChange={(e, o) => {
                         this.setState({
                           ticketDescription: o,
@@ -190,6 +216,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                   <div>
                     <TextField
                       label={ strings.PageLabel }
+                      className={ styles.inputHolder }
                       onChange={(e, o) => {
                         this.setState({
                           pageURL: o,
@@ -200,6 +227,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                       label={ strings.DateLabel }
                       options={dateRange}
                       required
+                      className={ styles.inputHolder }
                       onChange={(e, o) => {
                         let today = new Date();
                         let startDate = new Date();
@@ -218,6 +246,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                     />
                     <TextField
                       label={ strings.EmailToLabel }
+                      className={ styles.inputHolder }
                       onChange={(e, o) => {
                         this.setState({
                           emailTo: o,
@@ -229,6 +258,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                       multiline
                       rows={3}
                       required
+                      className={ styles.inputHolder }
                       onChange={(e, o) => {
                         this.setState({
                           ticketDescription: o,
@@ -242,6 +272,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                   <div>
                     <TextField
                       label={ strings.PageLabel }
+                      className={ styles.inputHolder }
                       onChange={(e, o) => {
                         this.setState({
                           pageURL: o,
@@ -253,6 +284,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                       multiline
                       rows={3}
                       required
+                      className={ styles.inputHolder }
                       onChange={(e, o) => {
                         this.setState({
                           ticketDescription: o,

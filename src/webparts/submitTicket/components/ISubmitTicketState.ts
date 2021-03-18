@@ -7,4 +7,5 @@ export interface ISubmitTicketState {
   emailTo: string;
   pageURL: string;
   attachImage: any;
+  displayMessage: boolean;
 }
