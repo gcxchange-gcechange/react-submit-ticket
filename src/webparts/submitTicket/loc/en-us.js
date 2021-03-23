@@ -9,13 +9,12 @@ define([], function() {
     "DescriptionLabel": "Description",
     "PageLabel": "Page URL",
     "AttachLabel": "Attach Image",
-    "StartDateLabel": "Start Date",
-    "EndDateLabel": "End Date",
+    "DateLabel": "Date Range",
     "EmailToLabel": "Email Report To",
     "SubmitLabel": "Submit",
     "ReasonIssue": "I am experiencing an issue on gcxchange",
     "ReasonAssistance": "I need assistance using gxchange",
     "ReasonData": "I would like to request statistics on my page",
-    "ReasonOther": "Other"
+    "ReasonOther": "Other (please specify)"
   }
 });
