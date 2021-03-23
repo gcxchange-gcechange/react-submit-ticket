@@ -3,7 +3,6 @@ import { IHttpClientOptions, AadHttpClient, HttpClientResponse } from '@microsof
 import {
   TextField,
   Dropdown,
-  DropdownMenuItemType,
   IDropdownOption,
   MessageBar,
   MessageBarType
@@ -49,8 +48,6 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
 
   private sendTicket(): void {
     const reqHeaders: Headers = new Headers();
-    // reqHeaders.append('Content-type', 'application/json');
-    reqHeaders.append('Content-Type', 'multipart/form-data');
     var reqBody = new FormData();
     reqBody.append('email', this.props.currentUser.email);
     reqBody.append('reasonOneVal', this.state.reasonOneVal.key);
