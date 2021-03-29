@@ -15,6 +15,10 @@ define([], function() {
     "ReasonIssue": "I am experiencing an issue on gcxchange",
     "ReasonAssistance": "I need assistance using gxchange",
     "ReasonData": "I would like to request statistics on my page",
-    "ReasonOther": "Other (please specify)"
+    "ReasonOther": "Other (please specify)",
+    "MessageSuccess": "Your ticket was sent to the help desk!",
+    "MessageError": "There was an issue sending the ticket. Please try again later.",
+    "MessageButtonResubmit": "Resubmit Ticket",
+    "LoadingSubmitTicket": "Sending Ticket...",
   }
 });

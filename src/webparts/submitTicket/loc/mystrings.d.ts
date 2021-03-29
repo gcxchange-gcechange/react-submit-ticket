@@ -15,6 +15,10 @@ declare interface ISubmitTicketWebPartStrings {
   ReasonAssistance: string;
   ReasonData: string;
   ReasonOther: string;
+  MessageSuccess: string;
+  MessageError: string;
+  MessageButtonResubmit: string;
+  LoadingSubmitTicket: string;
 }
 
 declare module 'SubmitTicketWebPartStrings' {
