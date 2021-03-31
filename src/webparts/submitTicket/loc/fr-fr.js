@@ -16,9 +16,9 @@ define([], function() {
     "ReasonAssistance": "J'ai besoin d'aide avec gcéchange",
     "ReasonData": "Je souhaite obtenir les statistiques de ma page",
     "ReasonOther": "Autre (veuillez préciser)",
-    "MessageSuccess": "Your Ticket was sent to the help desk! (FR)",
-    "MessageError": "There was an issue sending the ticket. Please try again later. (FR)",
-    "MessageButtonResubmit": "Resubmit Ticket (FR)",
-    "LoadingSubmitTicket": "Sending Ticket... (FR)",
+    "MessageSuccess": "Votre billet a été soumis.",
+    "MessageError": "Un problème est survenu; veuillez réessayer plus tard.",
+    "MessageButtonResubmit": "Envoyer",
+    "LoadingSubmitTicket": "Envoi du billet...",
   }
 });
