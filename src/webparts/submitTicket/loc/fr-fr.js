@@ -15,6 +15,10 @@ define([], function() {
     "ReasonIssue": "Je rencontre un problème sur gcéchange",
     "ReasonAssistance": "J'ai besoin d'aide avec gcéchange",
     "ReasonData": "Je souhaite obtenir les statistiques de ma page",
-    "ReasonOther": "Autre (veuillez préciser)"
+    "ReasonOther": "Autre (veuillez préciser)",
+    "MessageSuccess": "Votre billet a été soumis.",
+    "MessageError": "Un problème est survenu; veuillez réessayer plus tard.",
+    "MessageButtonResubmit": "Envoyer",
+    "LoadingSubmitTicket": "Envoi du billet...",
   }
 });

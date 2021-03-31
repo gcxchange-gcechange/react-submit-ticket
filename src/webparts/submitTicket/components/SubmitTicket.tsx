@@ -5,7 +5,10 @@ import {
   Dropdown,
   IDropdownOption,
   MessageBar,
-  MessageBarType
+  MessageBarType,
+  MessageBarButton,
+  Spinner,
+  SpinnerSize
 } from 'office-ui-fabric-react';
 import styles from './SubmitTicket.module.scss';
 import * as strings from 'SubmitTicketWebPartStrings';
@@ -42,11 +45,15 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
       pageURL: '',
       emailTo: '',
       attachImage: null,
-      displayMessage: false
+      displayMessage: '',
+      isLoading: false,
     };  
   }
 
   private sendTicket(): void {
+    this.setState({
+      isLoading: true,
+    });
     const reqHeaders: Headers = new Headers();
     var reqBody = new FormData();
     reqBody.append('email', this.props.currentUser.email);
@@ -73,7 +80,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
             console.log(response);
             if (response.status === 200) {
               this.setState({
-                displayMessage: true,
+                displayMessage: 'success',
                 reasonOneVal: '',
                 ticketDescription: '',
                 startDate: '',
@@ -81,6 +88,12 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                 pageURL: '',
                 emailTo: '',
                 attachImage: null,
+                isLoading: false,
+              });
+            } else {
+              this.setState({
+                isLoading: false,
+                displayMessage: 'error',
               });
             }
             return response.json();
@@ -93,11 +106,29 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
       <div className={ styles.submitTicket }>
         <div className={ styles.container }>
           <div className={ styles.row }>
-            {this.state.displayMessage &&
+            {(this.state.displayMessage === 'success') &&
               <MessageBar
-                messageBarType={MessageBarType.success}
+              messageBarType={MessageBarType.success}
               >
-                Your Ticket was sent to the help desk!
+                {strings.MessageSuccess}
+              </MessageBar>
+            }
+            {(this.state.displayMessage === 'error') &&
+              <MessageBar
+                messageBarType={MessageBarType.severeWarning}
+                actions={
+                  <div>
+                    <MessageBarButton
+                      onClick={() => {
+                        this.sendTicket();
+                      }}
+                    >
+                      {strings.MessageButtonResubmit}
+                    </MessageBarButton>
+                  </div>
+                }
+              >
+                {strings.MessageError}
               </MessageBar>
             }
             <div className={ styles.column }>
@@ -124,7 +155,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                       reasonOneVal: o,
                       reasonTwoVal: '',
                       ticketDescription: '',
-                      displayMessage: false
+                      displayMessage: ''
                     });
                   }}
                 />
@@ -143,7 +174,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                     <TextField
                       label={strings.DescriptionLabel}
                       multiline
-                      rows={3}
+                      rows={4}
                       required
                       className={ styles.inputHolder }
                       onChange={(e, o) => {
@@ -183,7 +214,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                     <TextField
                       label={strings.DescriptionLabel}
                       multiline
-                      rows={3}
+                      rows={4}
                       required
                       className={ styles.inputHolder }
                       onChange={(e, o) => {
@@ -253,7 +284,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                     <TextField
                       label={strings.DescriptionLabel}
                       multiline
-                      rows={3}
+                      rows={4}
                       required
                       className={ styles.inputHolder }
                       onChange={(e, o) => {
@@ -279,7 +310,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                     <TextField
                       label={strings.DescriptionLabel}
                       multiline
-                      rows={3}
+                      rows={4}
                       required
                       className={ styles.inputHolder }
                       onChange={(e, o) => {
@@ -305,6 +336,9 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                   </div>
                 }
                 <input disabled={(this.state.ticketDescription) ? false : true} className={ styles.button } type="submit" value={strings.SubmitLabel} />
+                {this.state.isLoading &&
+                  <Spinner label={strings.LoadingSubmitTicket} size={SpinnerSize.medium} />
+                }
               </form>
             </div>
           </div>
