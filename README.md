@@ -2,9 +2,8 @@
 
 ## Summary
 
-Short summary on functionality and used technologies.
+A simple form that allows users of gcxchange to submit tickets to a submit ticket Azure Function.
 
-[picture of the solution in action, if possible]
 
 ## Used SharePoint Framework Version
 
@@ -16,10 +15,6 @@ Short summary on functionality and used technologies.
 - [Microsoft 365 tenant](https://docs.microsoft.com/en-us/sharepoint/dev/spfx/set-up-your-developer-tenant)
 
 > Get your own free development tenant by subscribing to [Microsoft 365 developer program](http://aka.ms/o365devprogram)
-
-## Prerequisites
-
-> Any special pre-requisites?
 
 ## Solution
 
@@ -48,21 +43,13 @@ Version|Date|Comments
   - **npm install**
   - **gulp serve**
 
-> Include any additional steps as needed.
+> You will also need to add your client id and azure function to the submit ticket method!
 
 ## Features
 
-Description of the extension that expands upon high-level summary above.
-
-This extension illustrates the following concepts:
-
-- topic 1
-- topic 2
-- topic 3
-
-> Notice that better pictures and documentation will increase the sample usage and the value you are providing for others. Thanks for your submissions advance.
-
-> Share your web part with others through Microsoft 365 Patterns and Practices program to get visibility and exposure. More details on the community, open-source projects and other activities from http://aka.ms/m365pnp.
+- 4 different ticket types for users to choose with different form paths (Issues, Assistance, Data Request, Other)
+- Ability to upload and attach images to the ticket
+- Grabs logged in user's email and pre-populates the email field
 
 ## References
 
