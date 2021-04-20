@@ -7,7 +7,7 @@ define([], function() {
     "ReasonOneLabel": "Quelle est votre raison principale pour soumettre un billet?",
     "ReasonTwoLabel": "Reason 2 Label (translate)",
     "DescriptionLabel": "Description",
-    "PageLabel": "Page URL",
+    "PageLabel": "Adresse Web (le cas échéant)",
     "AttachLabel": "Joindre un fichier",
     "DateLabel": "Date Range",
     "EmailToLabel": "Envoyer le rapport à",
