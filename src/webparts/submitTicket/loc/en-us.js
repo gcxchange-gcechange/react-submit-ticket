@@ -20,5 +20,6 @@ define([], function() {
     "MessageError": "There was an issue sending the ticket. Please try again later.",
     "MessageButtonResubmit": "Resubmit Ticket",
     "LoadingSubmitTicket": "Sending Ticket...",
+    "SelectPlaceHolder": "Select an option",
   }
 });

@@ -20,5 +20,6 @@ define([], function() {
     "MessageError": "Un problème est survenu; veuillez réessayer plus tard.",
     "MessageButtonResubmit": "Envoyer",
     "LoadingSubmitTicket": "Envoi du billet...",
+    "SelectPlaceHolder": "Choisir une option",
   }
 });
