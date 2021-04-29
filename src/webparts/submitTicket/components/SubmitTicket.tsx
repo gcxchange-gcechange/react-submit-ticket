@@ -132,7 +132,6 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
               </MessageBar>
             }
             <div className={ styles.column }>
-              <p className={ styles.description }>{escape(this.props.description)}</p>
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
@@ -147,6 +146,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                 />
                 <Dropdown
                   label={strings.ReasonOneLabel}
+                  placeholder={strings.SelectPlaceHolder}
                   options={options}
                   required
                   className={ styles.inputHolder }
@@ -253,6 +253,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                     />
                     <Dropdown
                       label={ strings.DateLabel }
+                      placeholder={strings.SelectPlaceHolder}
                       options={dateRange}
                       required
                       className={ styles.inputHolder }
@@ -337,7 +338,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                 }
                 <input disabled={(this.state.ticketDescription) ? false : true} className={ styles.button } type="submit" value={strings.SubmitLabel} />
                 {this.state.isLoading &&
-                  <Spinner label={strings.LoadingSubmitTicket} size={SpinnerSize.medium} />
+                  <Spinner ariaLive="polite" label={strings.LoadingSubmitTicket} ariaLabel={strings.LoadingSubmitTicket} size={SpinnerSize.medium} />
                 }
               </form>
             </div>
