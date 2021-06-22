@@ -12,18 +12,12 @@ import * as strings from 'SubmitTicketWebPartStrings';
 import SubmitTicket from './components/SubmitTicket';
 import { ISubmitTicketProps } from './components/ISubmitTicketProps';
 
-import { SelectLanguage } from './components/SelectLanguage';
-
 export interface ISubmitTicketWebPartProps {
   description: string;
   prefLang: string;
 }
 
 export default class SubmitTicketWebPart extends BaseClientSideWebPart<ISubmitTicketWebPartProps> {
-
-  public _getPrefLang(): string {
-    return this.properties.prefLang;
-  }
 
   public render(): void {
     const element: React.ReactElement<ISubmitTicketProps> = React.createElement(
