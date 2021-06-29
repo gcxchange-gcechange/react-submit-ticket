@@ -56,7 +56,7 @@ export default class SubmitTicketWebPart extends BaseClientSideWebPart<ISubmitTi
                   label: strings.DescriptionFieldLabel
                 }),
                 PropertyPaneDropdown('prefLang', {
-                  label: 'Preffered Language',
+                  label: 'Preferred Language',
                   options: [
                     { key: 'account', text: 'Account' },
                     { key: 'en-us', text: 'English' },
