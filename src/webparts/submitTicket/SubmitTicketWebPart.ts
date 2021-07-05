@@ -3,7 +3,8 @@ import * as ReactDom from 'react-dom';
 import { Version } from '@microsoft/sp-core-library';
 import {
   IPropertyPaneConfiguration,
-  PropertyPaneTextField
+  PropertyPaneTextField,
+  PropertyPaneDropdown,
 } from '@microsoft/sp-property-pane';
 import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
 
@@ -13,6 +14,7 @@ import { ISubmitTicketProps } from './components/ISubmitTicketProps';
 
 export interface ISubmitTicketWebPartProps {
   description: string;
+  prefLang: string;
 }
 
 export default class SubmitTicketWebPart extends BaseClientSideWebPart<ISubmitTicketWebPartProps> {
@@ -24,6 +26,7 @@ export default class SubmitTicketWebPart extends BaseClientSideWebPart<ISubmitTi
         description: this.properties.description,
         currentUser: this.context.pageContext.user,
         context: this.context,
+        prefLang: this.properties.prefLang,
       }
     );
 
@@ -51,7 +54,14 @@ export default class SubmitTicketWebPart extends BaseClientSideWebPart<ISubmitTi
               groupFields: [
                 PropertyPaneTextField('description', {
                   label: strings.DescriptionFieldLabel
-                })
+                }),
+                PropertyPaneDropdown('prefLang', {
+                  label: 'Preferred Language',
+                  options: [
+                    { key: 'account', text: 'Account' },
+                    { key: 'en-us', text: 'English' },
+                    { key: 'fr-fr', text: 'Français' }
+                  ]}),
               ]
             }
           ]
