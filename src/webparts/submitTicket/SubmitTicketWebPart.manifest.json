@@ -21,7 +21,8 @@
     "description": { "default": "SubmitTicket description" },
     "officeFabricIconFontName": "Page",
     "properties": {
-      "description": "SubmitTicket"
+      "description": "SubmitTicket",
+      "prefLang": "account"
     }
   }]
 }
