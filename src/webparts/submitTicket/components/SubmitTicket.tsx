@@ -14,7 +14,6 @@ import styles from './SubmitTicket.module.scss';
 //import * as strings from 'SubmitTicketWebPartStrings';
 import { ISubmitTicketProps } from './ISubmitTicketProps';
 import { ISubmitTicketState } from './ISubmitTicketState';
-import { escape } from '@microsoft/sp-lodash-subset';
 
 import { SelectLanguage } from './SelectLanguage';
 
