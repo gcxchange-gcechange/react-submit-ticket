@@ -1,7 +1,6 @@
 # Submit Ticket
 
 ## Summary
-
 - A simple form that allows users of gcxchange to submit tickets to a submit ticket Azure Function.
 - Able to change the language (English/French) in the property pane.
 
