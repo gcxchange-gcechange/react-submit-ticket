@@ -1,4 +1,4 @@
-# Name of the application
+# Submit Ticket
 
 ## Summary
 
