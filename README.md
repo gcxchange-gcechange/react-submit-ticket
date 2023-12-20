@@ -24,12 +24,9 @@ This web part connects to [This function app](https://github.com/gcxchange-gcech
 ## API permission
 None
 ## Version 
+![SPFX](https://img.shields.io/badge/SPFX-1.17.4-green.svg)
+![Node.js](https://img.shields.io/badge/Node.js-v16.13+-green.svg)
 
-Used SharePoint Framework Webpart or Sharepoint Framework Extension 
-
-![SPFx 1.11](https://img.shields.io/badge/SPFx-1.11-green.svg)
-
-![Node.js v10](https://img.shields.io/badge/Node.js-10.22.0-green.svg)
 
 ## Applies to
 
@@ -40,10 +37,10 @@ Used SharePoint Framework Webpart or Sharepoint Framework Extension
 
 ## Version history
 
-Version|Date|Comments
--------|----|--------
-1.0|Dec 9, 2021|Initial release
-1.1|March 25, 2022|Next release
+| Version | Date         | Comments                |
+| ------- | ------------ | ----------------------- |
+| 1.0     | Mar 3, 2021 | Initial release         |
+| 1.1     | Dec 20, 2023 | Upgraded to SPFX 1.17.4 |
 
 ## Minimal Path to Awesome
 
