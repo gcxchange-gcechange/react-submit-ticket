@@ -19,11 +19,10 @@
 
 ## Prerequisites
 
-This web part connects to [this function app](https://github.com/gcxchange-gcechange/appsvc-fnc-dev-userstats).
+This web part connects to [This function app](https://github.com/gcxchange-gcechange/CreateTicketAzureFunction).
 
 ## API permission
-List of api permission that need to be approve by a sharepoint admin.
-
+None
 ## Version 
 
 Used SharePoint Framework Webpart or Sharepoint Framework Extension 
