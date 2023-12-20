@@ -43,22 +43,22 @@ None
 | 1.1     | Dec 20, 2023 | Upgraded to SPFX 1.17.4 |
 
 ## Minimal Path to Awesome
-
 - Clone this repository
 - Ensure that you are at the solution folder
-- In the command-line run:
+- To install the dependencies, in the command-line run:
   - **npm install**
-  - **gulp serve**
-- You will need to add your client id and azure function to the `clientId` and `url` classs members at the top of the filename.tsx file.
+- Add the Client Id and the url of the function app mentioned in the section Prerequisites to the file `src\webparts\submitTicket\components\SubmitTicket.tsx`
 - To debug in the front end:
-  - go to the `serve.json` file and update `initialPage` to `https://domain-name.sharepoint.com/_layouts/15/workbench.aspx`
-  - Run the command **gulp serve**
-- To deploy: in the command-line run
-  - **gulp bundle --ship**
-  - **gulp package-solution --ship**
-- Add the webpart to your tenant app store
-- Approve the web API permissions
-
+  - go to the `serve.json` file and update `initialPage` to :
+    - `https://your-domain-name.sharepoint.com/_layouts/15/workbench.aspx`
+  - In the command-line run:
+    - **gulp serve**
+- To deploy:
+  - In the command-line run:
+    - **gulp clean**
+    - **gulp bundle --ship**
+    - **gulp package-solution --ship**
+  - Add the webpart to your tenant app store
+- Add the Webpart to a page
 ## Disclaimer
-
 **THIS CODE IS PROVIDED *AS IS* WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
