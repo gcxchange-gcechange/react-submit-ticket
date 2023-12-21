@@ -1,4 +1,5 @@
 declare interface ISubmitTicketWebPartStrings {
+  userLang: string,
   PropertyPaneDescription: string;
   BasicGroupName: string;
   DescriptionFieldLabel: string;
