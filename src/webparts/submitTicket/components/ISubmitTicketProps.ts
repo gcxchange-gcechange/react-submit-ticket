@@ -5,4 +5,6 @@ export interface ISubmitTicketProps {
   currentUser: any;
   context: WebPartContext;
   prefLang: string;
+  updateWebPart: ()=>void;
+
 }

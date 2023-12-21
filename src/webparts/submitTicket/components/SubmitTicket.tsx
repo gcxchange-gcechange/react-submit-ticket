@@ -45,6 +45,13 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
   }
 
   public strings = SelectLanguage(this.props.prefLang);
+  public async componentDidUpdate (prevProps:ISubmitTicketProps){
+    if (prevProps.prefLang !== this.props.prefLang) {
+      this.strings = SelectLanguage(this.props.prefLang);
+      await this.props.updateWebPart();
+    }
+  }
+
 
   // Example placeholder options
   public options: IDropdownOption[] = [

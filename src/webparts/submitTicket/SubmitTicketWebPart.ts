@@ -19,9 +19,16 @@ export interface ISubmitTicketWebPartProps {
 
 export default class SubmitTicketWebPart extends BaseClientSideWebPart<ISubmitTicketWebPartProps> {
   private strings: ISubmitTicketWebPartStrings;
+
   protected async onInit(): Promise<void> {
     this.strings = SelectLanguage(this.properties.prefLang);
   }
+
+  public updateWebPart= async () => {
+    this.context.propertyPane.refresh();
+    this.render();
+  }
+
   public render(): void {
     const element: React.ReactElement<ISubmitTicketProps> = React.createElement(
       SubmitTicket,
@@ -30,6 +37,8 @@ export default class SubmitTicketWebPart extends BaseClientSideWebPart<ISubmitTi
         currentUser: this.context.pageContext.user,
         context: this.context,
         prefLang: this.properties.prefLang,
+        updateWebPart:this.updateWebPart
+
       }
     );
 
