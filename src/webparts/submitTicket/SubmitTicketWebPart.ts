@@ -29,6 +29,7 @@ export default class SubmitTicketWebPart extends BaseClientSideWebPart<ISubmitTi
     this.render();
   }
 
+  
   public render(): void {
     const element: React.ReactElement<ISubmitTicketProps> = React.createElement(
       SubmitTicket,

@@ -65,6 +65,9 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
     this.setState({
       isLoading: true,
     });
+    console.log("startdate",this.state.startDate)
+    console.log("endDate",this.state.endDate)
+
     const reqHeaders: Headers = new Headers();
     var reqBody = new FormData();
     reqBody.append('email', this.props.currentUser.email);
@@ -82,11 +85,11 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
     };
     this.props.context.aadHttpClientFactory
       // Add Client
-      .getClient('')
+      .getClient('f8c9145d-0c33-4916-baf5-f3b0113366cf')
       .then((client: AadHttpClient): void => {
         client
           // Add URL
-          .post('', AadHttpClient.configurations.v1, options)
+          .post('https://appsvc-function-dev-tiket-dotnet001.azurewebsites.net/api/CreateTicket', AadHttpClient.configurations.v1, options)
           .then((response: HttpClientResponse) => {
             console.log(response);
             if (response.status === 200) {
@@ -104,7 +107,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
             } else {
               this.setState({
                 isLoading: false,
-                displayMessage: 'error',
+                displayMessage: 'error' + response.text
               });
             }
             return response.json();
