@@ -3,21 +3,13 @@
 ## Summary
 - A simple form that allows users of gcxchange to submit tickets to a submit ticket Azure Function.
 - Able to change the language (English/French) in the property pane.
-
-### Default Form:
-![Default Form](./src/webparts/submitTicket/assets/submit-ticket-default-form.png)
-
-### Form when first option seleted:
-![Form when first option seleted](./src/webparts/submitTicket/assets/submit-ticket-first-option-form.png)
-
-### Form when third option seleted:
-![Form when third option seleted](./src/webparts/submitTicket/assets/submit-ticket-third-option-form.png)
+- Option of the form are base on the selected subject. 
+- The ability to join a file is available on each option.
 
 ### Form with active submit button:
 ![Form with active submit button](./src/webparts/submitTicket/assets/submit-ticket-form-with-active-submit-button.png)
 
 ## Prerequisites
-
 This web part connects to [This function app](https://github.com/gcxchange-gcechange/CreateTicketAzureFunction).
 
 ## API permission
