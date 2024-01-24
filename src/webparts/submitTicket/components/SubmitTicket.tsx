@@ -121,14 +121,14 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
         <div className={ styles.container }>
           <div className={ styles.row }>
             {(this.state.displayMessage === 'success') &&
-              <MessageBar
+              <MessageBar role="alert"
               messageBarType={MessageBarType.success}
               >
                 {this.strings.MessageSuccess}
               </MessageBar>
             }
             {(this.state.displayMessage === 'error') &&
-              <MessageBar
+              <MessageBar aria-live="assertive" tabIndex={0}
                 messageBarType={MessageBarType.severeWarning}
                 actions={
                   <div>
