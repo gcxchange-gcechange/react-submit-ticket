@@ -14,7 +14,6 @@ import styles from './SubmitTicket.module.scss';
 //import * as strings from 'SubmitTicketWebPartStrings';
 import { ISubmitTicketProps } from './ISubmitTicketProps';
 import { ISubmitTicketState } from './ISubmitTicketState';
-import { escape } from '@microsoft/sp-lodash-subset';
 
 import { SelectLanguage } from './SelectLanguage';
 
@@ -59,7 +58,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
       isLoading: true,
     });
     const reqHeaders: Headers = new Headers();
-    var reqBody = new FormData();
+    const reqBody = new FormData();
     reqBody.append('email', this.props.currentUser.email);
     reqBody.append('reasonOneVal', this.state.reasonOneVal.key);
     reqBody.append('reasonTwoVal', '');
@@ -262,8 +261,8 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                       required
                       className={ styles.inputHolder }
                       onChange={(e, o) => {
-                        let today = new Date();
-                        let startDate = new Date();
+                        const today = new Date();
+                        const startDate = new Date();
                         if (o.key === '7') {
                           startDate.setDate(startDate.getDate()-7);
                         } else if (o.key === '30') {

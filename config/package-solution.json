@@ -18,6 +18,16 @@
       "privacyUrl": "",
       "termsOfUseUrl": "",
       "mpnId": ""
+    },"metadata": {
+      "shortDescription": {
+        "default": "gcx-submit-ticket description"
+      },
+      "longDescription": {
+        "default": "gcx-submit-ticket description"
+      },
+      "screenshotPaths": [],
+      "videoUrl": "",
+      "categories": []
     }
   },
   "paths": {

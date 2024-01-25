@@ -1,11 +1,20 @@
 {
   "@microsoft/generator-sharepoint": {
+    "plusBeta": false,
     "isCreatingSolution": true,
-    "environment": "spo",
-    "version": "1.11.0",
+    "nodeVersion": "16.15.1",
+    "sdksVersions": {
+      "@microsoft/microsoft-graph-client": "3.0.2",
+      "@microsoft/teams-js": "2.9.1"
+    },
+    "version": "1.17.4",
     "libraryName": "gcx-submit-ticket",
     "libraryId": "7390a843-70bb-4e5a-9cce-69c4d47eb406",
+    "environment": "spo",
     "packageManager": "npm",
+    "solutionName": "gcx-submit-ticket",
+    "solutionShortDescription": "gcx-submit-ticket description",
+    "skipFeatureDeployment": true,
     "isDomainIsolated": false,
     "componentType": "webpart"
   }
