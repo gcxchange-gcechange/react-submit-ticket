@@ -1,16 +1,16 @@
-import * as React from 'react';
-import * as ReactDom from 'react-dom';
-import { Version } from '@microsoft/sp-core-library';
+import * as React from "react";
+import * as ReactDom from "react-dom";
+import { Version } from "@microsoft/sp-core-library";
 import {
   IPropertyPaneConfiguration,
   PropertyPaneTextField,
   PropertyPaneDropdown,
-} from '@microsoft/sp-property-pane';
-import { BaseClientSideWebPart } from '@microsoft/sp-webpart-base';
+} from "@microsoft/sp-property-pane";
+import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
 
-import * as strings from 'SubmitTicketWebPartStrings';
-import SubmitTicket from './components/SubmitTicket';
-import { ISubmitTicketProps } from './components/ISubmitTicketProps';
+import SubmitTicket from "./components/SubmitTicket";
+import { ISubmitTicketProps } from "./components/ISubmitTicketProps";
+import { SelectLanguage } from "./components/SelectLanguage";
 
 export interface ISubmitTicketWebPartProps {
   description: string;
@@ -18,7 +18,18 @@ export interface ISubmitTicketWebPartProps {
 }
 
 export default class SubmitTicketWebPart extends BaseClientSideWebPart<ISubmitTicketWebPartProps> {
+  private strings: ISubmitTicketWebPartStrings;
 
+  protected async onInit(): Promise<void> {
+    this.strings = SelectLanguage(this.properties.prefLang);
+  }
+
+  public updateWebPart= async () => {
+    this.context.propertyPane.refresh();
+    this.render();
+  }
+
+  
   public render(): void {
     const element: React.ReactElement<ISubmitTicketProps> = React.createElement(
       SubmitTicket,
@@ -27,6 +38,8 @@ export default class SubmitTicketWebPart extends BaseClientSideWebPart<ISubmitTi
         currentUser: this.context.pageContext.user,
         context: this.context,
         prefLang: this.properties.prefLang,
+        updateWebPart:this.updateWebPart
+
       }
     );
 
@@ -38,7 +51,7 @@ export default class SubmitTicketWebPart extends BaseClientSideWebPart<ISubmitTi
   }
 
   protected get dataVersion(): Version {
-    return Version.parse('1.0');
+    return Version.parse("1.0");
   }
 
   protected getPropertyPaneConfiguration(): IPropertyPaneConfiguration {
@@ -46,27 +59,29 @@ export default class SubmitTicketWebPart extends BaseClientSideWebPart<ISubmitTi
       pages: [
         {
           header: {
-            description: strings.PropertyPaneDescription
+            description: this.strings.PropertyPaneDescription,
           },
           groups: [
             {
-              groupName: strings.BasicGroupName,
+              groupName: this.strings.BasicGroupName,
               groupFields: [
-                PropertyPaneTextField('description', {
-                  label: strings.DescriptionFieldLabel
+                PropertyPaneTextField("description", {
+                  label: this.strings.DescriptionFieldLabel,
                 }),
-                PropertyPaneDropdown('prefLang', {
-                  label: 'Preferred Language',
+                PropertyPaneDropdown("prefLang", {
+                  label: "Preferred Language",
                   options: [
-                    { key: 'account', text: 'Account' },
-                    { key: 'en-us', text: 'English' },
-                    { key: 'fr-fr', text: 'Français' }
-                  ]}),
-              ]
-            }
-          ]
-        }
-      ]
+                    { key: "account", text: "Account" },
+                    { key: "en-us", text: "English" },
+                    { key: "fr-fr", text: "Français" },
+                  ],
+                  selectedKey: this.strings.userLang,
+                }),
+              ],
+            },
+          ],
+        },
+      ],
     };
   }
 }

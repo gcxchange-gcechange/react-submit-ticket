@@ -8,7 +8,7 @@
     "isDomainIsolated": false,
     "webApiPermissionRequests": [  
       {
-        "resource": "CreateTicketHttp",
+        "resource": "dgcx_dev_appreg_createticket",
         "scope": "user_impersonation"
       }
     ],

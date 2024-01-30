@@ -44,6 +44,13 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
   }
 
   public strings = SelectLanguage(this.props.prefLang);
+  public async componentDidUpdate (prevProps:ISubmitTicketProps){
+    if (prevProps.prefLang !== this.props.prefLang) {
+      this.strings = SelectLanguage(this.props.prefLang);
+      await this.props.updateWebPart();
+    }
+  }
+
 
   // Example placeholder options
   public options: IDropdownOption[] = [
@@ -57,6 +64,9 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
     this.setState({
       isLoading: true,
     });
+    console.log("startdate",this.state.startDate)
+    console.log("endDate",this.state.endDate)
+
     const reqHeaders: Headers = new Headers();
     const reqBody = new FormData();
     reqBody.append('email', this.props.currentUser.email);
@@ -74,11 +84,11 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
     };
     this.props.context.aadHttpClientFactory
       // Add Client
-      .getClient('')
+      .getClient('f8c9145d-0c33-4916-baf5-f3b0113366cf')
       .then((client: AadHttpClient): void => {
         client
           // Add URL
-          .post('', AadHttpClient.configurations.v1, options)
+          .post('https://appsvc-function-dev-tiket-dotnet001.azurewebsites.net/api/CreateTicket', AadHttpClient.configurations.v1, options)
           .then((response: HttpClientResponse) => {
             console.log(response);
             if (response.status === 200) {
@@ -96,7 +106,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
             } else {
               this.setState({
                 isLoading: false,
-                displayMessage: 'error',
+                displayMessage: 'error' + response.text
               });
             }
             return response.json();
@@ -110,14 +120,14 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
         <div className={ styles.container }>
           <div className={ styles.row }>
             {(this.state.displayMessage === 'success') &&
-              <MessageBar
+              <MessageBar role="alert"
               messageBarType={MessageBarType.success}
               >
                 {this.strings.MessageSuccess}
               </MessageBar>
             }
             {(this.state.displayMessage === 'error') &&
-              <MessageBar
+              <MessageBar aria-live="assertive" tabIndex={0}
                 messageBarType={MessageBarType.severeWarning}
                 actions={
                   <div>
