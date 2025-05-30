@@ -84,11 +84,11 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
     };
     this.props.context.aadHttpClientFactory
       // Add Client
-      .getClient('f8c9145d-0c33-4916-baf5-f3b0113366cf')
+      .getClient('')
       .then((client: AadHttpClient): void => {
         client
           // Add URL
-          .post('https://appsvc-function-dev-tiket-dotnet001.azurewebsites.net/api/CreateTicket', AadHttpClient.configurations.v1, options)
+          .post('', AadHttpClient.configurations.v1, options)
           .then((response: HttpClientResponse) => {
             console.log(response);
             if (response.status === 200) {
@@ -106,7 +106,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
             } else {
               this.setState({
                 isLoading: false,
-                displayMessage: 'error' + response.text
+                displayMessage: 'error'
               });
             }
             return response.json();
