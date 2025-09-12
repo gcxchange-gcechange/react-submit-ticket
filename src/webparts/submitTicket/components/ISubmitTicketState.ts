@@ -1,12 +1,12 @@
 export interface ISubmitTicketState {
-  reasonOneVal: any;
-  reasonTwoVal: any;
+  reasonOneVal: {key: string, text: string};
+  reasonTwoVal: {key: string, text: string};
   ticketDescription: string;
-  startDate: any;
-  endDate: any;
+  startDate: string;
+  endDate: string;
   emailTo: string;
   pageURL: string;
-  attachImage: any;
+  attachImage: undefined | File;
   displayMessage: string;
   isLoading: boolean;
 }
