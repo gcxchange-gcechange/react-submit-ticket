@@ -15,8 +15,8 @@ This web part connects to [This function app](https://github.com/gcxchange-gcech
 ## API permission
 None
 ## Version 
-![SPFX](https://img.shields.io/badge/SPFX-1.17.4-green.svg)
-![Node.js](https://img.shields.io/badge/Node.js-v16.13+-green.svg)
+![SPFX](https://img.shields.io/badge/SPFX-1.21.1-green.svg)
+![Node.js](https://img.shields.io/badge/Node.js-v22+-green.svg)
 
 
 ## Applies to
@@ -30,8 +30,9 @@ None
 
 | Version | Date         | Comments                |
 | ------- | ------------ | ----------------------- |
-| 1.0     | Mar 3, 2021 | Initial release         |
+| 1.0     | Mar 3, 2021  | Initial release         |
 | 1.1     | Dec 20, 2023 | Upgraded to SPFX 1.17.4 |
+| 2.0     | Mar 3, 2021  | Upgraded to SPFX 1.21.1 |
 
 ## Minimal Path to Awesome
 - Clone this repository

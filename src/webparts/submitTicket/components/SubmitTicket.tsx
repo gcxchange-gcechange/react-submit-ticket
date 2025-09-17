@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
+
 import * as React from 'react';
 import { IHttpClientOptions, AadHttpClient, HttpClientResponse } from '@microsoft/sp-http';
 import {
@@ -9,7 +11,7 @@ import {
   MessageBarButton,
   Spinner,
   SpinnerSize
-} from 'office-ui-fabric-react';
+} from '@fluentui/react';
 import styles from './SubmitTicket.module.scss';
 //import * as strings from 'SubmitTicketWebPartStrings';
 import { ISubmitTicketProps } from './ISubmitTicketProps';
@@ -30,8 +32,8 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
 
     // Initialize the state of the component
     this.state = {
-      reasonOneVal: '',
-      reasonTwoVal: '',
+      reasonOneVal: {key: '', text: ''},
+      reasonTwoVal: {key: '', text: ''},
       ticketDescription: '',
       startDate: '',
       endDate: '',
@@ -44,7 +46,8 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
   }
 
   public strings = SelectLanguage(this.props.prefLang);
-  public async componentDidUpdate (prevProps:ISubmitTicketProps){
+
+  public async componentDidUpdate (prevProps:ISubmitTicketProps): Promise<void>{
     if (prevProps.prefLang !== this.props.prefLang) {
       this.strings = SelectLanguage(this.props.prefLang);
       await this.props.updateWebPart();
@@ -60,7 +63,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
     { key: "Other (please specify) | Autre (veuillez préciser)", text: this.strings.ReasonOther },
   ];
 
-  private sendTicket(): void {
+    private sendTicket(): void {
     this.setState({
       isLoading: true,
     });
@@ -94,7 +97,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
             if (response.status === 200) {
               this.setState({
                 displayMessage: 'success',
-                reasonOneVal: '',
+                reasonOneVal: { key: '', text: '' },
                 ticketDescription: '',
                 startDate: '',
                 endDate: '',
@@ -132,8 +135,8 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                 actions={
                   <div>
                     <MessageBarButton
-                      onClick={() => {
-                        this.sendTicket();
+                      onClick={ async () => {
+                        await this.sendTicket();
                       }}
                     >
                       {this.strings.MessageButtonResubmit}
@@ -146,9 +149,9 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
             }
             <div className={ styles.column }>
               <form
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault();
-                  this.sendTicket();
+                  await this.sendTicket();
                 }}
               >
                 <TextField
@@ -164,12 +167,14 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                   required
                   className={ styles.inputHolder }
                   onChange={(e, o) => {
-                    this.setState({
-                      reasonOneVal: o,
-                      reasonTwoVal: '',
-                      ticketDescription: '',
-                      displayMessage: ''
-                    });
+                    if (o) {
+                      this.setState({
+                        reasonOneVal: { key: o.key as string, text: o.text as string },
+                        reasonTwoVal: { key: '', text: '' },
+                        ticketDescription: '',
+                        displayMessage: ''
+                      });
+                    }
                   }}
                 />
                 {
@@ -281,8 +286,8 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                           startDate.setDate(startDate.getDate()-90);
                         }
                         this.setState({
-                          startDate: startDate,
-                          endDate: today
+                          startDate: startDate.toISOString(),
+                          endDate: today.toISOString()
                         });
                       }}
                     />

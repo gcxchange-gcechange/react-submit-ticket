@@ -24,7 +24,7 @@ export default class SubmitTicketWebPart extends BaseClientSideWebPart<ISubmitTi
     this.strings = SelectLanguage(this.properties.prefLang);
   }
 
-  public updateWebPart= async () => {
+  public updateWebPart= async (): Promise<void> => {
     this.context.propertyPane.refresh();
     this.render();
   }
