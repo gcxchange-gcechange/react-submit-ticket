@@ -21,6 +21,7 @@ declare interface ISubmitTicketWebPartStrings {
   MessageButtonResubmit: string;
   LoadingSubmitTicket: string;
   SelectPlaceHolder: string;
+  ProB: string;
 }
 
 declare module 'SubmitTicketWebPartStrings' {

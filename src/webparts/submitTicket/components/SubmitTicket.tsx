@@ -58,6 +58,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
   // Example placeholder options
   public options: IDropdownOption[] = [
     { key: 'I am experiencing an issue on gcxchange | Je rencontre un problème sur gcéchange', text: this.strings.ReasonIssue },
+    { key: 'ProB', text: this.strings.ProB},
     { key: "I need assistance using gcxchange | J'ai besoin d'aide avec gcéchange", text: this.strings.ReasonAssistance },
     { key: "I would like to request statistics on my page | Je souhaite obtenir les statistiques de ma page", text: this.strings.ReasonData },
     { key: "Other (please specify) | Autre (veuillez préciser)", text: this.strings.ReasonOther },
@@ -178,7 +179,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                   }}
                 />
                 {
-                  (this.state.reasonOneVal.key === 'I am experiencing an issue on gcxchange | Je rencontre un problème sur gcéchange') &&
+                  (this.state.reasonOneVal.key === 'I am experiencing an issue on gcxchange | Je rencontre un problème sur gcéchange' || this.state.reasonOneVal.key === "ProB") &&
                   <div>
                     <TextField
                       label={ this.strings.PageLabel }

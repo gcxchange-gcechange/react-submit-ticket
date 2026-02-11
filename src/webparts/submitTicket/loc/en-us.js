@@ -22,5 +22,6 @@ define([], function() {
     "MessageButtonResubmit": "Resubmit Ticket",
     "LoadingSubmitTicket": "Sending Ticket...",
     "SelectPlaceHolder": "Select an option",
+    "ProB":"I am experiencing an issue with my Protected B community",
   }
 });

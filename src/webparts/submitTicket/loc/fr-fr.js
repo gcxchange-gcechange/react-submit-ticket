@@ -22,5 +22,6 @@ define([], function() {
     "MessageButtonResubmit": "Envoyer",
     "LoadingSubmitTicket": "Envoi du billet...",
     "SelectPlaceHolder": "Choisir une option",
+    "ProB":"Je rencontre un problème avec ma collectivité Protégé B",
   }
 });
