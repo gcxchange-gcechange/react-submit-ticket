@@ -39,7 +39,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
       endDate: '',
       pageURL: '',
       emailTo: '',
-      attachImage: null,
+      attachImage: undefined,
       displayMessage: '',
       isLoading: false,
     };
@@ -64,7 +64,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
     { key: "Other (please specify) | Autre (veuillez préciser)", text: this.strings.ReasonOther },
   ];
 
-    private sendTicket(): void {
+  private sendTicket(): void {
     this.setState({
       isLoading: true,
     });
@@ -76,12 +76,13 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
     reqBody.append('email', this.props.currentUser.email);
     reqBody.append('reasonOneVal', this.state.reasonOneVal.key);
     reqBody.append('reasonTwoVal', '');
-    reqBody.append('ticketDescription', this.state.ticketDescription);
-    reqBody.append('pageURL', this.state.pageURL);
-    reqBody.append('startDate', this.state.startDate);
-    reqBody.append('endDate', this.state.endDate);
-    reqBody.append('emailTo', this.state.emailTo);
-    reqBody.append('attachment', this.state.attachImage);
+    reqBody.append('ticketDescription', this.state.ticketDescription || '');
+    reqBody.append('pageURL', this.state.pageURL || '');
+    reqBody.append('startDate', this.state.startDate || '');
+    reqBody.append('endDate', this.state.endDate || '');
+    reqBody.append('emailTo', this.state.emailTo || '');
+    reqBody.append('attachment', this.state.attachImage || '');
+    
     const options: IHttpClientOptions = {
       headers: reqHeaders,
       body: reqBody
@@ -104,7 +105,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                 endDate: '',
                 pageURL: '',
                 emailTo: '',
-                attachImage: null,
+                attachImage: undefined,
                 isLoading: false,
               });
             } else {
@@ -211,7 +212,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                         id="issueFile"
                         onChange={({ target }) => {
                           this.setState({
-                            attachImage: target.files[0],
+                            attachImage: target.files?.[0],
                           });
                         }}
                       />
@@ -251,7 +252,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                         id="assistFile"
                         onChange={({ target }) => {
                           this.setState({
-                            attachImage: target.files[0],
+                            attachImage: target.files?.[0],
                           });
                         }}
                       />
@@ -279,11 +280,11 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                       onChange={(e, o) => {
                         const today = new Date();
                         const startDate = new Date();
-                        if (o.key === '7') {
+                        if (o?.key === '7') {
                           startDate.setDate(startDate.getDate()-7);
-                        } else if (o.key === '30') {
+                        } else if (o?.key === '30') {
                           startDate.setDate(startDate.getDate()-30);
-                        } else if ( o.key === '90') {
+                        } else if ( o?.key === '90') {
                           startDate.setDate(startDate.getDate()-90);
                         }
                         this.setState({
@@ -348,7 +349,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
                         id="otherFile"
                         onChange={({ target }) => {
                           this.setState({
-                            attachImage: target.files[0],
+                            attachImage: target.files?.[0],
                           });
                         }}
                       />
