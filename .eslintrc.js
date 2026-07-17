@@ -276,7 +276,7 @@ module.exports = {
         // "Use strict" is redundant when using the TypeScript compiler.
         'strict': [
           2,
- 
+          'never'
         ],
         // RATIONALE:         Catches code that is likely to be incorrect
         // STANDARDIZED BY:   eslint\conf\eslint-recommended.js
