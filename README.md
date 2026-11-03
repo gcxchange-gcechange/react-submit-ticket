@@ -15,8 +15,8 @@ This web part connects to [This function app](https://github.com/gcxchange-gcech
 ## API permission
 None
 ## Version 
-![SPFX](https://img.shields.io/badge/SPFX-1.21.1-green.svg)
-![Node.js](https://img.shields.io/badge/Node.js-v22+-green.svg)
+![SPFX](https://img.shields.io/badge/SPFX-1.22.2-green.svg)
+![Node.js](https://img.shields.io/badge/Node.js-v22.14+-green.svg)
 
 
 ## Applies to
@@ -33,6 +33,7 @@ None
 | 1.0     | Mar 3, 2021  | Initial release         |
 | 1.1     | Dec 20, 2023 | Upgraded to SPFX 1.17.4 |
 | 2.0     | Mar 3, 2021  | Upgraded to SPFX 1.21.1 |
+| 2.1     | Jul 16, 2026 | Upgraded to SPFx 1.22.2 |
 
 ## Minimal Path to Awesome
 - Clone this repository
@@ -44,12 +45,12 @@ None
   - go to the `serve.json` file and update `initialPage` to :
     - `https://your-domain-name.sharepoint.com/_layouts/15/workbench.aspx`
   - In the command-line run:
-    - **gulp serve**
+    - **npm start**
 - To deploy:
   - In the command-line run:
-    - **gulp clean**
-    - **gulp bundle --ship**
-    - **gulp package-solution --ship**
+    - **heft clean**
+    - **heft build --production**
+    - **heft package-solution --production**
   - Add the webpart to your tenant app store
 - Add the Webpart to a page
 ## Disclaimer
