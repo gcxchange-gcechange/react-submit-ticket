@@ -48,9 +48,9 @@ None
     - **npm start**
 - To deploy:
   - In the command-line run:
-    - **heft clean**
-    - **heft build --production**
-    - **heft package-solution --production**
+    - **npx heft clean**
+    - **npx heft build --production**
+    - **npx heft package-solution --production**
   - Add the webpart to your tenant app store
 - Add the Webpart to a page
 ## Disclaimer
