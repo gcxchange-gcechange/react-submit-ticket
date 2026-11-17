@@ -18,7 +18,7 @@ export interface ISubmitTicketWebPartProps {
 }
 
 export default class SubmitTicketWebPart extends BaseClientSideWebPart<ISubmitTicketWebPartProps> {
-  private strings: ISubmitTicketWebPartStrings;
+  private strings!: ISubmitTicketWebPartStrings;
 
   protected async onInit(): Promise<void> {
     this.strings = SelectLanguage(this.properties.prefLang);

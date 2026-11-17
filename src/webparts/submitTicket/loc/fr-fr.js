@@ -23,5 +23,6 @@ define([], function() {
     "LoadingSubmitTicket": "Envoi du billet...",
     "SelectPlaceHolder": "Choisir une option",
     "ProB":"Je rencontre un problème avec ma collectivité Protégé B",
+    "ReasonConcern":"Signaler une préoccupation",
   }
 });
