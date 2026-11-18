@@ -61,6 +61,7 @@ export default class SubmitTicket extends React.Component<ISubmitTicketProps, IS
     { key: 'ProB', text: this.strings.ProB},
     { key: "I need assistance using gcxchange | J'ai besoin d'aide avec gcéchange", text: this.strings.ReasonAssistance },
     { key: "I would like to request statistics on my page | Je souhaite obtenir les statistiques de ma page", text: this.strings.ReasonData },
+    { key: "Report a concern", text: this.strings.ReasonConcern },
     { key: "Other (please specify) | Autre (veuillez préciser)", text: this.strings.ReasonOther },
   ];
 

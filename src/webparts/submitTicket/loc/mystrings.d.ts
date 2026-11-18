@@ -22,6 +22,7 @@ declare interface ISubmitTicketWebPartStrings {
   LoadingSubmitTicket: string;
   SelectPlaceHolder: string;
   ProB: string;
+  ReasonConcern: string;
 }
 
 declare module 'SubmitTicketWebPartStrings' {
